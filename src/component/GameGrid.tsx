@@ -1,18 +1,23 @@
 import { useState } from "react";
 import useGames from "../Hooks/usegames";
 
-export const GameGrid = () => {
+import { GameCard } from "./GameCard";
+
+const GameGrid: React.FC = () => {
   const { games, error } = useGames();
 
   return (
-    <>
-      {error && <h1>{error}</h1>}
-      <ul>
+    <div className="container mt-4">
+      {error && <div className="alert alert-danger">{error}</div>}
+
+      <div className="row g-4">
         {games.map((game) => (
-          <li key={game.id}>{game.name}</li>
+          <div className="col-sm-6 col-md-4 col-lg-3" key={game.id}>
+            <GameCard game={game} />
+          </div>
         ))}
-      </ul>
-    </>
+      </div>
+    </div>
   );
 };
 
