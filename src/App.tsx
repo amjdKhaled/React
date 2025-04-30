@@ -1,9 +1,14 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
+import React, { useState } from "react";
 import { NavBar } from "./component/NavBar";
+import { GameGrid } from "./component/GameGrid";
 
-function App() {
-  return <NavBar />;
-}
+const App = () => {
+  return (
+    <>
+      <NavBar></NavBar>
+      <GameGrid />
+    </>
+  );
+};
+
 export default App;
