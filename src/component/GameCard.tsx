@@ -1,5 +1,6 @@
 import React from "react";
 import { Game } from "../Hooks/usegames";
+import { PlatformIconList } from "./PlatformIconList";
 
 interface Props {
   game: Game;
@@ -19,6 +20,9 @@ export const GameCard = ({ game }: Props) => {
         <a href="#" className="btn btn-primary">
           View Details
         </a>
+        <PlatformIconList
+          platforms={game.parent_platforms.map((p) => p.platform)}
+        />
       </div>
     </div>
   );
