@@ -15,9 +15,10 @@ import { IconType } from "react-icons";
 
 interface Props {
   platforms: Platform[];
+  darkMode: boolean;
 }
 
-export const PlatformIconList = ({ platforms }: Props) => {
+export const PlatformIconList = ({ platforms, darkMode }: Props) => {
   const iconMap: { [key: string]: IconType } = {
     pc: FaWindows,
     playstation: FaPlaystation,
@@ -36,7 +37,9 @@ export const PlatformIconList = ({ platforms }: Props) => {
         const IconComponent = iconMap[platform.slug];
         return (
           IconComponent && (
-            <span key={platform.id} className="text-muted">
+            <span
+              key={platform.id}
+              className={darkMode ? "text-white" : "text-muted"}>
               <IconComponent className="me-2" title={platform.name} />
             </span>
           )

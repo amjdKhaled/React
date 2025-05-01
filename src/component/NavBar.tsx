@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from "react";
-import Logo from "../assets/logo.png"; // Update path if needed
+import Logo from "../assets/logo.png";
 import GameGrid from "./GameGrid";
 import SerchInput from "../component/serchInput";
 import { GenreList } from "./GenreList";
+import App from "../App";
+import { Genre } from "../Hooks/useGenres";
+import { PlatformSelector } from "./PlatformSelector";
+import { CiDark } from "react-icons/ci";
+import { CiLight } from "react-icons/ci";
+
+interface GameQuery {
+  gere: Genre | null;
+}
 
 export const NavBar: React.FC = () => {
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("darkMode") === "true";
   });
@@ -74,14 +85,11 @@ export const NavBar: React.FC = () => {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
 
             <form className="d-flex align-items-center" role="search">
-              <button className="btn btn-success text-white" type="submit">
-                Search
-              </button>
               <button
                 className="btn btn-outline-primary me-2"
                 type="button"
                 onClick={toggleMode}>
-                {darkMode ? "Light" : "Dark"}
+                {darkMode ? <CiLight /> : <CiDark />}
               </button>
             </form>
           </div>
@@ -91,11 +99,15 @@ export const NavBar: React.FC = () => {
       <div className="container-fluid mt-4">
         <div className="row">
           <div className="col-md-3">
-            <GenreList />
+            <GenreList
+              onSelectGenre={(genre) => setSelectedGenre(genre)}
+              darkMode={darkMode}
+            />
           </div>
 
           <div className="col-md-9">
-            <GameGrid darkMode={darkMode} />
+            <PlatformSelector />
+            <GameGrid darkMode={darkMode} selectedGenre={selectedGenre} />
           </div>
         </div>
       </div>

@@ -1,12 +1,15 @@
-import useGenres from "../Hooks/useGenres";
-import useData from "../Hooks/useData";
+import useGenres, { Genre } from "../Hooks/useGenres";
+
+interface Props {
+  onSelectGenre: (genre: Genre) => void;
+  darkMode: boolean;
+}
 
 const getCroppedImageUrl = (url: string) => {
-  // Replace this with your actual image cropping logic
-  return url; // or crop using a utility function
+  return url;
 };
 
-export const GenreList = () => {
+export const GenreList = ({ onSelectGenre, darkMode }: Props) => {
   const { data: genres, error } = useGenres();
 
   if (error) return <p className="text-danger">{error}</p>;
@@ -22,7 +25,14 @@ export const GenreList = () => {
             height="32"
             className="rounded me-2"
           />
-          <span>{genre.name}</span>
+          <button
+            onClick={() => onSelectGenre(genre)}
+            className={`btn btn-link text-start ${
+              darkMode ? "text-white" : "text-dark"
+            }`}
+            style={{ textDecoration: "none" }}>
+            {genre.name}
+          </button>
         </li>
       ))}
     </ul>

@@ -3,12 +3,15 @@ import useGames from "../Hooks/usegames";
 import { GameCard } from "./GameCard";
 import { GenreList } from "./GenreList";
 import useData from "../Hooks/useData";
+import { Genre } from "../Hooks/useGenres";
+
 interface Props {
+  selectedGenre: Genre | null;
   darkMode: boolean;
 }
 
-const GameGrid: React.FC<Props> = ({ darkMode }) => {
-  const { data: games, error } = useGames();
+const GameGrid: React.FC<Props> = ({ darkMode, selectedGenre }: Props) => {
+  const { data: games, error } = useGames(selectedGenre);
 
   return (
     <div className="row g-4">

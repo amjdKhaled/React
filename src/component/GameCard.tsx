@@ -26,11 +26,10 @@ export const GameCard = ({ game, darkMode }: Props) => {
       <div className="card-body">
         <h5 className="card-title">{game.name}</h5>
         <p className="card-text">Explore more details about this game.</p>
-        <a href="#" className="btn btn-primary">
-          View Details
-        </a>
+
         <PlatformIconList
           platforms={game.parent_platforms.map((p) => p.platform)}
+          darkMode={darkMode}
         />
         <CriticSscore score={game.metacritic} />
       </div>
