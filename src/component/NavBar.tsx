@@ -6,7 +6,6 @@ import { GenreList } from "./GenreList";
 
 import { Genre } from "../Hooks/useGenres";
 import { PlatformSelector } from "./PlatformSelector";
-import { CiLight, CiDark } from "react-icons/ci";
 
 interface GameQuery {
   gere: Genre | null;
