@@ -1,14 +1,23 @@
 import React from "react";
 import { Game } from "../Hooks/usegames";
 import { PlatformIconList } from "./PlatformIconList";
+import { CriticSscore } from "./CriticSscore";
+import getCroppedImageUrl from "../services/img-url";
+import { GenreList } from "./GenreList";
 
 interface Props {
   game: Game;
+  darkMode: boolean;
 }
 
-export const GameCard = ({ game }: Props) => {
+export const GameCard = ({ game, darkMode }: Props) => {
   return (
-    <div className="card h-100" style={{ width: "100%" }}>
+    <div
+      className="card h-100"
+      style={{
+        backgroundColor: darkMode ? "#2a223a" : "#fff",
+        color: darkMode ? "#e0d4fc" : "#000",
+      }}>
       <img
         src={game.background_image}
         className="card-img-top"
@@ -23,6 +32,7 @@ export const GameCard = ({ game }: Props) => {
         <PlatformIconList
           platforms={game.parent_platforms.map((p) => p.platform)}
         />
+        <CriticSscore score={game.metacritic} />
       </div>
     </div>
   );
