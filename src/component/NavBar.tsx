@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../assets/logo.png";
 import GameGrid from "./GameGrid";
-import SerchInput from "../component/serchInput";
+
 import { GenreList } from "./GenreList";
-import App from "../App";
+
 import { Genre } from "../Hooks/useGenres";
 import { PlatformSelector } from "./PlatformSelector";
-import { CiDark } from "react-icons/ci";
-import { CiLight } from "react-icons/ci";
+import { CiLight, CiDark } from "react-icons/ci";
 
 interface GameQuery {
   gere: Genre | null;
@@ -89,7 +88,7 @@ export const NavBar: React.FC = () => {
                 className="btn btn-outline-primary me-2"
                 type="button"
                 onClick={toggleMode}>
-                {darkMode ? <CiLight /> : <CiDark />}
+                {darkMode ? "Light" : "Dark "}
               </button>
             </form>
           </div>

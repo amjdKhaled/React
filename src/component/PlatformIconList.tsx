@@ -1,4 +1,3 @@
-import React from "react";
 import { Platform } from "../Hooks/usegames";
 import {
   FaWindows,
@@ -12,8 +11,9 @@ import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
 import { IconType } from "react-icons";
+import React from "react";
 
-interface Props {
+export interface Props {
   platforms: Platform[];
   darkMode: boolean;
 }
@@ -34,13 +34,17 @@ export const PlatformIconList = ({ platforms, darkMode }: Props) => {
   return (
     <div className="d-flex flex-wrap gap-2">
       {platforms.map((platform) => {
-        const IconComponent = iconMap[platform.slug];
+        const IconComponent = iconMap[platform.slug] as React.ElementType;
+
         return (
           IconComponent && (
             <span
               key={platform.id}
               className={darkMode ? "text-white" : "text-muted"}>
-              <IconComponent className="me-2" title={platform.name} />
+              {React.createElement(IconComponent, {
+                className: "me-2",
+                title: platform.name,
+              })}
             </span>
           )
         );
