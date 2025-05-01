@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../assets/logo.png";
 import GameGrid from "./GameGrid";
-
 import { GenreList } from "./GenreList";
-
 import { Genre } from "../Hooks/useGenres";
 import { PlatformSelector } from "./PlatformSelector";
 
-interface GameQuery {
-  gere: Genre | null;
-}
-
 export const NavBar: React.FC = () => {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("darkMode") === "true";
   });
@@ -28,17 +21,6 @@ export const NavBar: React.FC = () => {
     backgroundColor: darkMode ? "#1e1b2e" : "#f8f9fa",
     color: darkMode ? "#e0d4fc" : "#212529",
     minHeight: "100vh",
-  };
-
-  const inputStyle = {
-    backgroundColor: darkMode ? "#2b2a3d" : "#fff",
-    color: darkMode ? "#e0d4fc" : "#000",
-    border: "1px solid #555",
-  };
-
-  const dropdownStyle = {
-    backgroundColor: darkMode ? "#2b2a3d" : "#fff",
-    color: darkMode ? "#e0d4fc" : "#000",
   };
 
   document.documentElement.style.setProperty(
@@ -84,10 +66,10 @@ export const NavBar: React.FC = () => {
 
             <form className="d-flex align-items-center" role="search">
               <button
-                className="btn btn-outline-primary me-2"
+                className="btn btn-outline-primary me-2 d-flex align-items-center"
                 type="button"
                 onClick={toggleMode}>
-                {darkMode ? "Light" : "Dark "}
+                {darkMode ? "Light" : "Dark"}
               </button>
             </form>
           </div>
@@ -112,3 +94,5 @@ export const NavBar: React.FC = () => {
     </div>
   );
 };
+
+export default NavBar;
